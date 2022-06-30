@@ -250,6 +250,7 @@ export const ActionType = {
   getGeolocation: "appsmith.geolocation.getCurrentPosition",
   watchGeolocation: "appsmith.geolocation.watchPosition",
   stopWatchGeolocation: "appsmith.geolocation.clearWatch",
+  postMessage: "postMessageToTargetWindow",
 };
 type ActionType = typeof ActionType[keyof typeof ActionType];
 
@@ -674,6 +675,7 @@ const fieldConfigs: FieldConfigs = {
     },
     view: ViewTypes.TEXT_VIEW,
   },
+<<<<<<< HEAD
   [FieldType.PAGE_NAME_AND_URL_TAB_SELECTOR_FIELD]: {
     getter: (value: any) => {
       return enumTypeGetter(value, 0);
@@ -683,6 +685,8 @@ const fieldConfigs: FieldConfigs = {
     },
     view: ViewTypes.TAB_VIEW,
   },
+=======
+>>>>>>> b41b967e6f (Revert "Revert "feat: Add a field for the post message api exposure" (#14890)")
 };
 
 function renderField(props: {
@@ -868,6 +872,8 @@ function renderField(props: {
     case FieldType.DELAY_FIELD:
     case FieldType.ID_FIELD:
     case FieldType.CLEAR_INTERVAL_ID_FIELD:
+    case FieldType.MESSAGE_FIELD:
+    case FieldType.TARGET_ORIGIN_FIELD:
       let fieldLabel = "";
       if (fieldType === FieldType.ALERT_TEXT_FIELD) {
         fieldLabel = "Message";
@@ -893,6 +899,10 @@ function renderField(props: {
         fieldLabel = "Id";
       } else if (fieldType === FieldType.CLEAR_INTERVAL_ID_FIELD) {
         fieldLabel = "Id";
+      } else if (fieldType === FieldType.MESSAGE_FIELD) {
+        fieldLabel = "Message";
+      } else if (fieldType === FieldType.TARGET_ORIGIN_FIELD) {
+        fieldLabel = "Target origin";
       }
       viewElement = (view as (props: TextViewProps) => JSX.Element)({
         label: fieldLabel,
