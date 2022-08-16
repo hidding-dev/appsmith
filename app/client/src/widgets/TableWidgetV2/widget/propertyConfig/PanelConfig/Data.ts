@@ -64,6 +64,10 @@ export default {
           label: "Video",
           value: ColumnTypes.VIDEO,
         },
+        {
+          label: "Select",
+          value: ColumnTypes.SELECT,
+        },
       ],
       updateHook: composePropertyUpdateHook([
         updateNumberColumnTypeTextAlignment,

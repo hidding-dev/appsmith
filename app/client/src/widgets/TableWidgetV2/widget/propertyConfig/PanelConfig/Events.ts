@@ -26,7 +26,8 @@ export default {
         !(
           columnType === ColumnTypes.TEXT ||
           columnType === ColumnTypes.NUMBER ||
-          columnType === ColumnTypes.CHECKBOX
+          columnType === ColumnTypes.CHECKBOX ||
+          columnType === ColumnTypes.SELECT
         ) || !isEditable
       );
     }
@@ -117,6 +118,34 @@ export default {
       isJSConvertible: true,
       isBindProperty: true,
       isTriggerProperty: true,
+    },
+    {
+      helpText: "Trigger an action on change of filterText",
+      hidden: (props: TableWidgetProps, propertyPath: string) => {
+        const baseProperty = getBasePropertyPath(propertyPath);
+        const columnType = get(props, `${baseProperty}.columnType`, "");
+        const isEditable = get(props, `${baseProperty}.isEditable`, "");
+        const serverSideFiltering = get(
+          props,
+          `${baseProperty}.serverSideFiltering`,
+          false,
+        );
+        return (
+          columnType !== ColumnTypes.SELECT ||
+          !isEditable ||
+          !serverSideFiltering
+        );
+      },
+      dependencies: ["primaryColumns"],
+      propertyName: "onFilterUpdate",
+      label: "onFilterUpdate",
+      controlType: "ACTION_SELECTOR",
+      isJSConvertible: true,
+      isBindProperty: true,
+      isTriggerProperty: true,
+      additionalAutoComplete: () => ({
+        filterText: "",
+      }),
     },
     {
       propertyName: "onSave",
