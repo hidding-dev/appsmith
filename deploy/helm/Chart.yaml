@@ -13,3 +13,14 @@ sources:
 home: https://www.appsmith.com/
 icon: https://assets.appsmith.com/appsmith-icon.png
 version: 1.5.3
+dependencies:
+- name: redis
+  version: 17.0.10
+  appVersion: 6.0.2
+  enabled: true
+  repository: https://charts.bitnami.com/bitnami
+- name: mongodb
+  version: 10.31.5
+  appVersion: 4.4.11
+  enabled: true
+  repository: https://charts.bitnami.com/bitnami
