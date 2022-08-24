@@ -386,6 +386,7 @@ export enum FieldType {
   CLEAR_INTERVAL_ID_FIELD = "CLEAR_INTERVAL_ID_FIELD",
   MESSAGE_FIELD = "MESSAGE_FIELD",
   TARGET_ORIGIN_FIELD = "TARGET_ORIGIN_FIELD",
+  SOURCE_FIELD = "SOURCE_FIELD",
   PAGE_NAME_AND_URL_TAB_SELECTOR_FIELD = "PAGE_NAME_AND_URL_TAB_SELECTOR_FIELD",
 }
 
@@ -441,7 +442,7 @@ const fieldConfigs: FieldConfigs = {
           defaultParams = `"",true`;
           break;
         case ActionType.postMessage:
-          defaultParams = `"", '*'`;
+          defaultParams = `"", '*', ""`;
           break;
         default:
           break;
@@ -678,7 +679,15 @@ const fieldConfigs: FieldConfigs = {
     },
     view: ViewTypes.TEXT_VIEW,
   },
-<<<<<<< HEAD
+  [FieldType.SOURCE_FIELD]: {
+    getter: (value: string) => {
+      return textGetter(value, 2);
+    },
+    setter: (value: string, currentValue: string) => {
+      return textSetter(value, currentValue, 2);
+    },
+    view: ViewTypes.TEXT_VIEW,
+  },
   [FieldType.PAGE_NAME_AND_URL_TAB_SELECTOR_FIELD]: {
     getter: (value: any) => {
       return enumTypeGetter(value, 0);
@@ -688,8 +697,6 @@ const fieldConfigs: FieldConfigs = {
     },
     view: ViewTypes.TAB_VIEW,
   },
-=======
->>>>>>> b41b967e6f (Revert "Revert "feat: Add a field for the post message api exposure" (#14890)")
 };
 
 function renderField(props: {
@@ -877,6 +884,7 @@ function renderField(props: {
     case FieldType.CLEAR_INTERVAL_ID_FIELD:
     case FieldType.MESSAGE_FIELD:
     case FieldType.TARGET_ORIGIN_FIELD:
+    case FieldType.SOURCE_FIELD:
       let fieldLabel = "";
       if (fieldType === FieldType.ALERT_TEXT_FIELD) {
         fieldLabel = "Message";
@@ -906,6 +914,8 @@ function renderField(props: {
         fieldLabel = "Message";
       } else if (fieldType === FieldType.TARGET_ORIGIN_FIELD) {
         fieldLabel = "Target origin";
+      } else if (fieldType === FieldType.SOURCE_FIELD) {
+        fieldLabel = "Iframe widget";
       }
       viewElement = (view as (props: TextViewProps) => JSX.Element)({
         label: fieldLabel,
