@@ -439,14 +439,15 @@ describe("Add functions", () => {
     );
   });
 
-  describe("Post message to target window works", () => {
+  describe("Post window message works", () => {
     const targetOrigin = "https://dev.appsmith.com/";
+    const source = "window";
 
     it("Post message with first argument (message) as a string", () => {
       const message = "Hello world!";
 
       expect(
-        dataTreeWithFunctions.postWindowMessage(message, targetOrigin),
+        dataTreeWithFunctions.postWindowMessage(message, source, targetOrigin),
       ).toBe(undefined);
 
       expect(self.TRIGGER_COLLECTOR).toEqual(
@@ -454,6 +455,7 @@ describe("Add functions", () => {
           expect.objectContaining({
             payload: {
               message: "Hello world!",
+              source: "window",
               targetOrigin: "https://dev.appsmith.com/",
             },
             type: "POST_MESSAGE",
@@ -466,7 +468,7 @@ describe("Add functions", () => {
       const message = undefined;
 
       expect(
-        dataTreeWithFunctions.postWindowMessage(message, targetOrigin),
+        dataTreeWithFunctions.postWindowMessage(message, source, targetOrigin),
       ).toBe(undefined);
 
       expect(self.TRIGGER_COLLECTOR).toEqual(
@@ -474,6 +476,7 @@ describe("Add functions", () => {
           expect.objectContaining({
             payload: {
               message: undefined,
+              source: "window",
               targetOrigin: "https://dev.appsmith.com/",
             },
             type: "POST_MESSAGE",
@@ -486,7 +489,7 @@ describe("Add functions", () => {
       const message = null;
 
       expect(
-        dataTreeWithFunctions.postWindowMessage(message, targetOrigin),
+        dataTreeWithFunctions.postWindowMessage(message, source, targetOrigin),
       ).toBe(undefined);
 
       expect(self.TRIGGER_COLLECTOR).toEqual(
@@ -494,6 +497,7 @@ describe("Add functions", () => {
           expect.objectContaining({
             payload: {
               message: null,
+              source: "window",
               targetOrigin: "https://dev.appsmith.com/",
             },
             type: "POST_MESSAGE",
@@ -506,7 +510,7 @@ describe("Add functions", () => {
       const message = 1826;
 
       expect(
-        dataTreeWithFunctions.postWindowMessage(message, targetOrigin),
+        dataTreeWithFunctions.postWindowMessage(message, source, targetOrigin),
       ).toBe(undefined);
 
       expect(self.TRIGGER_COLLECTOR).toEqual(
@@ -514,6 +518,7 @@ describe("Add functions", () => {
           expect.objectContaining({
             payload: {
               message: 1826,
+              source: "window",
               targetOrigin: "https://dev.appsmith.com/",
             },
             type: "POST_MESSAGE",
@@ -526,7 +531,7 @@ describe("Add functions", () => {
       const message = true;
 
       expect(
-        dataTreeWithFunctions.postWindowMessage(message, targetOrigin),
+        dataTreeWithFunctions.postWindowMessage(message, source, targetOrigin),
       ).toBe(undefined);
 
       expect(self.TRIGGER_COLLECTOR).toEqual(
@@ -534,6 +539,7 @@ describe("Add functions", () => {
           expect.objectContaining({
             payload: {
               message: true,
+              source: "window",
               targetOrigin: "https://dev.appsmith.com/",
             },
             type: "POST_MESSAGE",
@@ -546,7 +552,7 @@ describe("Add functions", () => {
       const message = [1, 2, 3, [1, 2, 3, [1, 2, 3]]];
 
       expect(
-        dataTreeWithFunctions.postWindowMessage(message, targetOrigin),
+        dataTreeWithFunctions.postWindowMessage(message, source, targetOrigin),
       ).toBe(undefined);
 
       expect(self.TRIGGER_COLLECTOR).toEqual(
@@ -554,6 +560,7 @@ describe("Add functions", () => {
           expect.objectContaining({
             payload: {
               message: [1, 2, 3, [1, 2, 3, [1, 2, 3]]],
+              source: "window",
               targetOrigin: "https://dev.appsmith.com/",
             },
             type: "POST_MESSAGE",
@@ -573,7 +580,7 @@ describe("Add functions", () => {
       };
 
       expect(
-        dataTreeWithFunctions.postWindowMessage(message, targetOrigin),
+        dataTreeWithFunctions.postWindowMessage(message, source, targetOrigin),
       ).toBe(undefined);
 
       expect(self.TRIGGER_COLLECTOR).toEqual(
@@ -588,6 +595,7 @@ describe("Add functions", () => {
                 },
                 randomArr: [1, 2, 3],
               },
+              source: "window",
               targetOrigin: "https://dev.appsmith.com/",
             },
             type: "POST_MESSAGE",
