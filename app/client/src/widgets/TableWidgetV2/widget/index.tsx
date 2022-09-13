@@ -1764,7 +1764,7 @@ class TableWidgetV2 extends BaseWidget<TableWidgetProps, WidgetState> {
       [column]: value,
     });
 
-    this.props.updateWidgetMetaProperty("editableCell", {});
+    this.props.updateWidgetMetaProperty("editableCell", defaultEditableCell);
 
     if (action) {
       this.onColumnEvent({
