@@ -23,6 +23,7 @@ import { Skin } from "constants/DefaultTheme";
 import { DropdownOption } from "components/constants";
 import { AutocompleteDataType } from "utils/autocomplete/TernServer";
 import { NavigationTargetType } from "sagas/ActionExecution/NavigateActionSaga";
+import PropertyHelpLabel from "pages/Editor/PropertyPane/PropertyHelpLabel";
 import DividerComponent from "widgets/DividerWidget/component";
 import store from "store";
 import { getPageList } from "selectors/entitiesSelector";
