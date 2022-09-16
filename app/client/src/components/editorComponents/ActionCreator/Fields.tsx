@@ -27,7 +27,6 @@ import PropertyHelpLabel from "pages/Editor/PropertyPane/PropertyHelpLabel";
 import DividerComponent from "widgets/DividerWidget/component";
 import store from "store";
 import { getPageList } from "selectors/entitiesSelector";
-import PropertyHelpLabel from "pages/Editor/PropertyPane/PropertyHelpLabel";
 
 /* eslint-disable @typescript-eslint/ban-types */
 /* TODO: Function and object types need to be updated to enable the lint rule */
